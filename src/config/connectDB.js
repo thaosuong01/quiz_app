@@ -1,0 +1,24 @@
+const { Sequelize } = require("sequelize");
+
+const sequelize = new Sequelize("quiz_app", "root", null, {
+  host: "localhost",
+  dialect: "mysql",
+  logging: false,
+  dialectOptions: {
+    useUTC: false,
+    dateStrings: true,
+    typeCast: true,
+  },
+  timezone: "+05:30",
+});
+
+const connectDB = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("Connection has been established successfully.");
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+};
+
+module.exports = connectDB;
